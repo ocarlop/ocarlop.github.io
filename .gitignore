@@ -1,3 +1,4 @@
+.jekyll-cache/
 python/__pycache__/
 _site
 node_modules
