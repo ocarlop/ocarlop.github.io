@@ -1,0 +1,46 @@
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KMX8354');</script>
+  <!-- End Google Tag Manager -->
+  <title>
+    {% if page.title %}
+      {{ page.title }} - {{ site.title }}
+    {% else %}
+      {{ site.title }}
+    {% endif %}
+  </title>
+  <meta charset="utf-8">
+  <!-- 404 client side redirection <meta http-equiv="refresh" content="5; url=/"> -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="{{ site.description }}">
+
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
+  <link rel="shortcut icon" href="/assets/icon/favicon.ico?" type="image/x-icon">
+  <link rel="icon" href="/assets/icon/favicon.ico?" type="image/x-icon">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="/assets/css/bootstrap.css">
+  {% case page.layout %}
+    {% when 'fancy' %}
+      <link rel="stylesheet" href="/assets/css/fancy.css" media="screen">
+    {% when 'landing' %}
+      <!-- <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" /> -->
+      <link rel="stylesheet" href="/assets/css/plyr.css" media="screen">
+      <link rel="stylesheet" href="/assets/css/landing.css" media="screen">
+    {% else %}
+      <link rel="stylesheet" href="/assets/css/gallery.css">
+  {% endcase %}
+</head>

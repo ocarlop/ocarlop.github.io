@@ -1,0 +1,63 @@
+<!-- Popper
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+Bootstrap
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script> -->
+<script src="/assets/js/bootstrap.bundle.js"></script>
+
+<!-- <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script> -->
+<!-- Google Analitics -->
+{% case page.layout %}
+  {% when 'fancy' %}
+    <!-- Fancy Scripts -->
+
+  {% when 'landing' %}
+    <!-- Landing Scripts -->
+    <!-- <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script> -->
+    <script src="/assets/js/plyr.js"></script>
+    <script src="/assets/js/observer.js"></script>
+    {% assign id = value %}
+    <script>
+      var tracks = { {% for song in site.data.songs %}{% if forloop.last %}{% assign comma = '' %}{% else %}{% assign comma = ',' %}{% endif %}{% assign id = song.name | slugify %}{% capture id %}{{ id }}-{{ forloop.index }}{% endcapture %}
+        "{{ id }}": { Audio: "{{ song.audio }}", Title: "{{ song.name }}"}{{ comma }}{% endfor %}
+      };
+      function selectTrack(id) {
+        player.source = {
+          type: 'audio',
+          title: tracks[id].Title,
+          sources: [
+            {
+              src: tracks[id].Audio + '.mp3',
+              type: 'audio/mp3',
+            },
+            {
+              src: tracks[id].Audio + '.ogg',
+              type: 'audio/ogg',
+            },
+          ],
+        };
+        player.play()
+      };
+      const player = new Plyr('#player', {
+        iconUrl:'/assets/plyr.svg',
+        controls: [
+          'play',
+          'progress',
+          // 'current-time',
+          // 'duration',
+          // 'mute',
+          // 'volume',
+          'download'
+        ]
+      });
+      </script>
+
+  {% when 'page' %}
+    <!-- Page Scripts -->
+
+  {% when 'post' %}
+    <!-- Post Scripts -->
+
+  {% else %}
+    <!-- Scripts -->
+
+{% endcase %}

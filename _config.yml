@@ -1,0 +1,79 @@
+url: "https://carlop.com.br"
+favicon: assets/icon/favicon.ico
+language: "pt_BR"
+owner:
+  name: Rafael Picanço
+  email: "umcarlop@gmail.com"
+  info: Cantor e compositor independente.
+  facebook: "https://facebook.com/ocarlop"
+  instagram: "https://instagram.com/ocarlop"
+  github: "https://github.com/cpicanco"
+  twitter: "https://twitter.com/crpicanco"
+  youtube: "https://www.youtube.com/channel/UCQ7t46HUh6L69BaPyfNoKoA"
+  tiktok: "https://vm.tiktok.com/ZSXeRkbS/"
+  spotify: "https://open.spotify.com/artist/0zmIsXbRFxRk0jjzA9bFhu"
+  deezer: "https://www.deezer.com/us/artist/105984112"
+  itunes: "https://music.apple.com/us/artist/carlop/1530015782"
+
+exclude: [
+  "CNAME",
+  "README.md",
+  "python",
+  ".liquidrc",
+  "contacts.csv",
+  "credits",
+  "mailchimp.apikey",
+  "inputimages.path",
+  "workflow",
+  "LICENCE"
+  ]
+
+# SiteMap
+sitemap:
+  file: "/sitemap.xml"
+  exclude:
+    - "/atom.xml"
+    - "/feed.xml"
+    - "/feed/index.xml"
+  include_posts:
+    - "/writing/"
+  change_frequency_name: "change_frequency"
+  priority_name: "priority"
+
+sass:
+  sass_dir: /assets/_sass
+  # style: compressed
+  style: expanded
+  sourcemap: never
+
+plugins:
+  - jemoji
+  - jekyll-paginate
+
+paginate: 5
+paginate_path: "/journal/page:num/"
+
+collections_dir: _collections
+collections:
+  album:
+    output: true
+  single:
+    output: true
+  ensaio:
+    output: true
+  ensaio-fotografico:
+    output: true
+
+defaults:
+  -
+    scope:
+      path: "en"
+    values:
+      language: "en_US"
+  -
+    scope:
+      path: ""
+    values:
+      title: Carlop
+      description: "Bora cantar"
+      language: "pt_BR"

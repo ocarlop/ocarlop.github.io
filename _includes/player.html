@@ -1,0 +1,53 @@
+<section id="playerSection" class="player-background">
+  <div class="container-fluid d-flex justify-content-center align-middle">
+    <div class="row g-0" role="tabpanel">
+      <div class="col">
+        <div class="card player-card tab-content" id="playerContainer">
+          {% for song in site.data.songs %}
+            {% if forloop.first %}
+              {% assign active = ' show active' %}
+            {% else %}
+              {% assign active = '' %}
+            {% endif %}
+            {% assign id = song.name | slugify %}
+            {% capture id %}{{ id }}-{{ forloop.index }}{% endcapture %}
+            <div class="tab-pane fade {{ active }}" id="{{ id }}" role="tabpanel" aria-labelledby="{{ id }}-list">
+              <img src="{{ song.cover }}" class="card-img-top" alt="{{ song.name }}">
+            </div>
+          {% endfor %}
+          {% assign song = site.data.songs[0] %}
+          <audio id="player" controls>
+            <source src="{{ song.audio }}.mp3" type="audio/mp3" />
+            <source src="{{ song.audio }}.ogg" type="audio/ogg" />
+          </audio>
+
+          <div class="list-group overflow-auto playlist-card" id="list-tab" role="tablist">
+            {% for song in site.data.songs %}
+              {% if forloop.first %}
+                {% assign active = ' active' %}
+              {% else %}
+                {% assign active = '' %}
+              {% endif %}
+            {% assign id = song.name | slugify %}
+            {% capture id %}{{ id }}-{{ forloop.index }}{% endcapture %}
+              <a class="list-group-item list-group-item-action bg-dark{{ active }}" id="{{ id }}-list" data-bs-toggle="list" href="#{{ id }}" role="tab" aria-controls="{{ id }}" onclick="selectTrack('{{ id }}');">
+                <div class="card-body">
+                  <div class="player-info">
+                    <h2 class="player-name">{{ song.name }}</h2>
+                    <h4 class="player-author">{{ song.author }}</h4>
+                  </div>
+                </div>
+              </a>
+              <!-- <a class="list-group-item list-group-item-action{{ active }}" data-bs-toggle="list" href="#{{ id }}-{{ forloop.index }}" role="tab">{{ song.name }}</a> -->
+            {% endfor %}
+          </div>
+
+
+        </div>
+      </div>
+      <!-- <div class="col"> -->
+
+      <!-- </div> -->
+    </div>
+  </div>
+</section>

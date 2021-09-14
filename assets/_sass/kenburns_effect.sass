@@ -1,0 +1,120 @@
+$available-animations: 3
+
+$scalesS: (1: 1.4, 2: 0.6, 3: 0.6)
+$scalesE: (1: 1.0, 2: 0.8, 3: 0.8)
+
+$rotateS: (1: 5, 2: 0, 3: 9)
+$rotateE: (1: 0, 2: 0, 3: 6)
+
+$transXS: (1: -300, 2: -300, 3: 00)
+$transYS: (1: -100, 2: 300, 3: 00)
+
+$transXE: (1: 0, 2: -300, 3: -150)
+$transYE: (1: 0, 2: 0, 3: 150)
+
+$slide_duration: 6s
+$duration: $cover-slides*$slide_duration
+$step: $duration/$cover-slides
+
+$random: 1
+
+@function get-index($index)
+  @if $index <= $available-animations
+    @return $index
+  @else
+    @return random($available-animations)
+
+@function get-scale($start, $index)
+  @if $start
+    @return map-get($scalesS, $index)
+  @else
+    @return map-get($scalesE, $index)
+
+@function get-degree($start, $index)
+  @if $start
+    @return map-get($rotateS, $index)
+  @else
+    @return map-get($rotateE, $index)
+
+@function get-translateX($start, $index)
+  @if $start
+    @return map-get($transXS, $index)
+  @else
+    @return map-get($transXE, $index)
+
+@function get-translateY($start, $index)
+  @if $start
+    @return map-get($transYS, $index)
+  @else
+    @return map-get($transYE, $index)
+
+@mixin Transform($function)
+  -webkit-transform: $function
+  -moz-transform: $function
+  -ms-transform: $function
+  transform: $function
+
+@mixin Rotate($degre)
+  @include Transform(rotate(#{$degre}deg))
+
+@mixin Scale($scale)
+  @include Transform(scale($scale))
+
+@mixin Translate($tranX, $tranY)
+  @include Transform(translate(#{$tranX}px, #{$tranY}px))
+
+@mixin ImageTransform($start, $index)
+  $scale: get-scale($start, $index)
+  $degree: get-degree($start, $index)
+  $tranX: get-translateX($start, $index)
+  $tranY: get-translateY($start, $index)
+  @include Transform(scale($scale) rotate(#{$degree}deg) translate(#{$tranX}px, #{$tranY}px))
+
+@mixin ImageTransformPatternStart
+  @for $index from 1 through $cover-slides
+    &:nth-child(#{$index})
+      $random: get-index($index)
+      animation-name: CrossFade#{$random}
+      animation-delay: $step*($index - 1)
+      @include ImageTransform(true, $random)
+
+
+@mixin ImageTransformPatternStop($index)
+  @include ImageTransform(false, get-index($index))
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+.cross-fade
+  background: #000 //no flash
+  display: flex
+  align-items: flex-end
+  height: 100vh
+  overflow: hidden
+  position: relative
+
+  img
+    align-self: center
+    position: fixed
+    width: 100vw
+    height: auto
+    min-width: 120vh
+    backface-visibility: hidden
+    opacity: 0
+    animation-duration: $duration
+    animation-iteration-count: infinite
+    animation-direction: normal
+    animation-timing-function: linear
+    @include ImageTransformPatternStart
+
+@for $index from 1 through $cover-slides
+  @keyframes CrossFade#{$index}
+    25%
+      opacity: 1
+      @include ImageTransformPatternStop($index)
+
+    40%
+      display: none
+      opacity: 0

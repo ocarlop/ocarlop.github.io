@@ -1,0 +1,46 @@
+<html class="no-js" lang="{{ page.language }}">
+	{% include head.html %}
+  <body class="gallery">
+    {% include header.html %}
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <section id="content" role="main">
+          {{ content }}
+          <div class="wrapper">
+            <h2>{{page.title}}</h2>
+            <!-- Gallery __-->
+            <div class="gallery masonry-gallery">
+
+              {% for image in page.images %}
+
+              <figure class="gallery-item">
+                <figure class="effect-selena">
+                  <header class='gallery-icon'>
+
+                    <a href="{{ site.url }}{{ image.gallery-folder }}">
+                      <img src="{{ site.url }}{{ image.image_path }}">
+                    </a>
+
+                  </header>
+                  <figcaption class='gallery-caption'>
+                    <div class="entry-summary">
+                      <h3>{{image.gallery-name}}</h3>
+                      <p>{{image.gallery-date}}</p>
+                    </div>
+                  </figcaption>
+                </figure>
+              </figure>
+
+              {% endfor %}
+
+            </div>
+          </div><!-- END .wrapper -->
+        </section>
+      </div>
+    </div>
+
+    {% include footer.html %}
+    {% include scripts.html %}
+  </body>
+</html>

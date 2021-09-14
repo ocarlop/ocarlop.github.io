@@ -1,0 +1,32 @@
+<footer class="container py-3 my-4">
+  <ul class="nav d-flex justify-content-end pb-2 mb-2">
+    <li class="ms-5">
+      <a class="text-muted" href="{{ page.owner.twitter }}">
+        <span class="fa-stack fa-lg">
+          <i class="fas fa-circle fa-stack-2x"></i>
+          <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    </li>
+    <li class="ms-5">
+      <a class="text-muted" href="{{ site.owner.instagram }}">
+        <span class="fa-stack fa-lg">
+          <i class="fas fa-circle fa-stack-2x"></i>
+          <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    </li>
+    <li class="ms-5">
+      <a class="text-muted" href="{{ site.owner.github }}">
+        <span class="fa-stack fa-lg">
+          <i class="fas fa-circle fa-stack-2x"></i>
+          <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    </li>
+  </ul>
+  <p class="text-center copyright text-muted">Copyleft &copy;
+    {{ 'now' | date: "%Y" }}
+    <a href="https://rafael.picanco.nom.br">{{ site.owner.name }}</a>.
+  </p>
+</footer>

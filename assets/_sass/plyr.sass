@@ -1,0 +1,77 @@
+h1
+  font-family: 'Open Sans', sans-serif
+  font-size: 13pt
+  font-weight: 600
+  text-transform: uppercase
+  color: white
+  cursor: default
+
+h4
+  font-family: 'Open Sans', sans-serif
+  font-size: 8pt
+  font-weight: 400
+  cursor: default
+
+h2
+  font-family: 'Open Sans', sans-serif
+  font-size: 13pt
+  font-weight: 300
+  color: white
+  cursor: default
+
+@mixin unselectable()
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+.playlist-card
+  width: 18rem
+  max-height: 18rem
+  
+.player-info
+   display: inline-block
+//   padding-right: 1rem
+
+.player-card
+  width: 18rem
+  background-color: #1E2125
+  position: relative
+  @include unselectable()
+  // top: 50%
+  // left: 50%
+  // transform: translate(-50%, -50%)
+  // -webkit-transform: translate(-50%, -50%)
+
+.player-title
+  margin: 0.5rem
+
+.player-name
+  margin-top: 1rem
+  line-height: 0px
+
+.player-author
+  line-height: 20px
+  color: #636367
+
+
+$plyr-color-main: #ff8800
+$plyr-video-progress-buffered-background: rgba(255, 187, 0, 0.829)
+$plyr-audio-progress-buffered-background: #151518
+$plyr-video-range-thumb-active-shadow-color: rgba(170, 0, 0, 0.5)
+$plyr-audio-range-thumb-active-shadow-color: rgba(184, 6, 0, 0.1)
+$plyr-control-spacing: 10px
+$plyr-font-size-small: 13px
+
+\:root
+  --plyr-color-main: #{$plyr-color-main}
+  --plyr-control-icon-size: 30px
+  --plyr-control-spacing: #{$plyr-control-spacing}
+  --plyr-control-padding: 40px
+  --plyr-control-radius: 15px
+  --plyr-audio-controls-background: #1E2125
+  --plyr-audio-control-color: #FEFEFE
+  --plyr-audio-control-color-hover: #8F4DA9
+  --plyr-audio-control-background-hover: --plyr-audio-controls-background
+  --plyr-audio-progress-buffered-background: #{$plyr-audio-progress-buffered-background}

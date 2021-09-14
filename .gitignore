@@ -1,0 +1,8 @@
+python/__pycache__/
+_site
+node_modules
+mailchimp.apikey
+assets/_sass/dist/
+assets/css/dist/
+assets/css/dist/
+assets/js/dist/
